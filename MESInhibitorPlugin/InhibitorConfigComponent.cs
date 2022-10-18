@@ -57,7 +57,7 @@ namespace avaness.MESInhibitorPlugin
         {
             try
             {
-                Type tBlockLogic = mes.GetType("ModularEncountersSystems.BlockLogic.InhibitorBase", false);
+                Type tBlockLogic = mes.GetType("ModularEncountersSystems.BlockLogic.InhibitorCore", false);
                 if(tBlockLogic != null)
                 {
                     int inhibitors = 0;
