@@ -58,7 +58,9 @@ namespace avaness.MESInhibitorPlugin
             try
             {
                 Type tBlockLogic = mes.GetType("ModularEncountersSystems.BlockLogic.InhibitorCore", false);
-                if(tBlockLogic != null)
+                if (tBlockLogic == null)
+                    tBlockLogic = mes.GetType("ModularEncountersSystems.BlockLogic.InhibitorBase", false);
+                if (tBlockLogic != null)
                 {
                     int inhibitors = 0;
                     HarmonyMethod inhibitorTickDisable = new HarmonyMethod(typeof(InhibitorConfigComponent), nameof(RunTick100));
