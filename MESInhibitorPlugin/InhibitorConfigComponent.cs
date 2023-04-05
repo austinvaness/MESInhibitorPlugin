@@ -60,6 +60,8 @@ namespace avaness.MESInhibitorPlugin
                 Type tBlockLogic = mes.GetType("ModularEncountersSystems.BlockLogic.InhibitorCore", false);
                 if (tBlockLogic == null)
                     tBlockLogic = mes.GetType("ModularEncountersSystems.BlockLogic.InhibitorBase", false);
+                if (tBlockLogic == null)
+                    tBlockLogic = mes.GetType("ModularEncountersSystems.BlockLogic.InhibitorLogic", false);
                 if (tBlockLogic != null)
                 {
                     int inhibitors = 0;
@@ -77,11 +79,15 @@ namespace avaness.MESInhibitorPlugin
                     }
 
                     if(inhibitors == 0)
+                    {
                         MyLog.Default.WriteLine("ERROR: No MES inhibitors were patched");
+                        MyAPIGateway.Utilities.ShowMessage("MES Inhibitor Plugin", "ERROR: No MES inhibitors were found!");
+                    }
                 }
                 else
                 {
                     MyLog.Default.WriteLine("ERROR: Unable to find MES inhbitors");
+                    MyAPIGateway.Utilities.ShowMessage("MES Inhibitor Plugin", "ERROR: No MES inhibitors were found!");
                 }
 
                 config?.Save();
@@ -89,6 +95,7 @@ namespace avaness.MESInhibitorPlugin
             catch (Exception e)
             {
                 MyLog.Default.WriteLine("ERROR: An error occurred while trying to patch MES: " + e);
+                MyAPIGateway.Utilities.ShowMessage("MES Inhibitor Plugin", "ERROR: No MES inhibitors were found!");
             }
         }
 
